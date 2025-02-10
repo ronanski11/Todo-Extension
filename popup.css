@@ -304,4 +304,26 @@ select, .date-filter {
 .fade-out {
     opacity: 0;
     transform: translateX(20px);
+}.hidden {
+  display: none;
+}
+
+.deadline-toggle-btn {
+  padding: 8px 12px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9em;
+}
+
+.deadline-toggle-btn:hover {
+  background-color: #e4e4e4;
+}
+
+.deadline-toggle-btn i {
+  font-size: 0.9em;
 }

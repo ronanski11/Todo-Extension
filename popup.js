@@ -11,13 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const historyTypeFilter = document.getElementById("history-type-filter");
   const completedList = document.getElementById("completed-list");
   const completedSortFilter = document.getElementById("completed-sort-filter");
+  const deadlineToggleBtn = document.querySelector(".deadline-toggle-btn");
 
-  // Set minimum date and default value for deadline to now
-  const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-  const nowString = now.toISOString().slice(0, 16);
-  deadlineInput.min = nowString;
-  deadlineInput.value = nowString;
+  deadlineToggleBtn.addEventListener("click", function() {
+    this.style.display = 'none';
+    deadlineInput.classList.remove("hidden");
+    
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    const nowString = now.toISOString().slice(0, 16);
+    deadlineInput.min = nowString;
+    deadlineInput.value = nowString;
+    deadlineInput.focus();
+  });
 
   function initializeViews() {
     viewButtons.forEach((btn) => {
@@ -94,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function addNewTodo() {
     const text = todoInput.value.trim();
-    const deadline = deadlineInput.value;
+    const deadline = deadlineInput.classList.contains("hidden") ? null : deadlineInput.value;
 
     if (text) {
       const newTodo = {
@@ -123,6 +129,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const newNow = new Date();
       newNow.setMinutes(newNow.getMinutes() - newNow.getTimezoneOffset());
       deadlineInput.value = newNow.toISOString().slice(0, 16);
+
+      deadlineInput.classList.add("hidden");
+      deadlineToggleBtn.style.display = '';
 
       await loadTodos();
       renderHistory(history);

@@ -28,11 +28,19 @@
     </div>
 
     <div id="tasks-view" class="view active">
-      <div class="input-container">
-        <input type="text" id="new-todo" placeholder="Add a new task...">
-        <input type="datetime-local" id="todo-deadline" class="deadline-input">
-        <button class="add-btn">Add</button>
-      </div>
+        <div class="input-container">
+          <input type="text" id="new-todo" placeholder="Add a new task..." />
+          <button class="deadline-toggle-btn">
+            <i class="fas fa-clock"></i>
+            Add due date
+          </button>
+          <input
+            type="datetime-local"
+            id="todo-deadline"
+            class="deadline-input hidden"
+          />
+          <button class="add-btn">Add</button>
+        </div>
 
       <div class="filters">
         <select id="sort-filter">
